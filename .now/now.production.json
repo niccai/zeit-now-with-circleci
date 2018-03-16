@@ -1,0 +1,7 @@
+{
+    "name": "circleci-with-zeith-now-production",
+    "type": "npm",
+    "forwardNpm": true,
+    "dotenv": ".env.production",
+    "alias": ["example.com"]
+}

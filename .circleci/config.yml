@@ -1,0 +1,72 @@
+defaults: &defaults
+    docker:
+        - image: circleci/node:8.10.0
+    working_directory: ~/tmp/circlci-now
+
+version: 2
+jobs:
+    checkout:
+        <<: *defaults
+        steps:
+            - checkout
+            - attach_workspace:
+                at: ~/tmp/circlci-now
+            - restore_cache:
+                keys:
+                    - npm-cache-{{ .Branch }}-{{ checksum "package.json" }}
+                    - npm-cache-{{ .Branch }}
+                    - npm-cache-
+            - run:
+                name: NPM Install
+                command: npm install
+            - save_cache:
+                key: npm-cache-{{ .Branch }}-{{ checksum "package.json" }}
+                paths:
+                    - node_modules
+            - persist_to_workspace:
+                root: .
+                paths: .
+    unit-test:
+        <<: *defaults
+        steps:
+            - attach_workspace:
+                at: ~/tmp/circlci-now
+            - run:
+                name: NPM Install
+                command: npm install
+            - run:
+                name: Unit Test
+                command: npm run test
+    deploy:
+        <<: *defaults
+        steps:
+            - attach_workspace:
+                at: ~/tmp/circlci-now
+            - run:
+                name: Install Now CLI
+                command: sudo npm install --global --unsafe-perm now
+            - deploy:
+                name: Deploy & Alias
+                command: |
+                    if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                        now --token $ZEIT_TOKEN --team yourteam --local-config .now/now.production.json
+                        now --token $ZEIT_TOKEN --team yourteam --local-config .now/now.production.json alias
+                    elif [ "${CIRCLE_BRANCH}" == "develop" ]; then
+                        now --token $ZEIT_TOKEN --team yourteam --local-config .now/now.staging.json
+                        now --token $ZEIT_TOKEN --team yourteam --local-config .now/now.staging.json alias
+                    else
+                        ./.now/now.feature.sh
+                        now --token $ZEIT_TOKEN --team yourteam --local-config .now/now.feature.json
+                        now --token $ZEIT_TOKEN --team yourteam --local-config .now/now.feature.json alias
+                    fi
+workflows:
+    version: 2
+    test-deploy-purge:
+        jobs:
+            - checkout
+            - unit-test:
+                requires:
+                    - checkout
+            - deploy:
+                requires:
+                    - unit-test
