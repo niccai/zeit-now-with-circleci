@@ -2,6 +2,5 @@
     "name": "circleci-with-zeith-now-staging",
     "type": "npm",
     "forwardNpm": true,
-    "dotenv": ".env.staging",
     "alias": ["staging-circleci-now.niccai.com"]
 }

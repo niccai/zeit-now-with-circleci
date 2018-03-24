@@ -2,6 +2,5 @@
     "name": "circleci-with-zeith-now-production",
     "type": "npm",
     "forwardNpm": true,
-    "dotenv": ".env.production",
     "alias": ["master-circleci-now.niccai.com"]
 }
