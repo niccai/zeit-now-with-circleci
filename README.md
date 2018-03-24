@@ -1,4 +1,4 @@
-# circleci-with-zeit-now
+# zeit-now-with-circleci
 
 Get Zeit's Now working with CircleCI
 
