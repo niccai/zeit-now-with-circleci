@@ -3,7 +3,7 @@ set -e
 
 CLEAN_BRANCH_NAME=${CIRCLE_BRANCH//\//-};
 
-JSON=$(cat <<-EOF
+JSON=`$(cat <<-EOF
 {
     "name": "$CIRCLE_PROJECT_REPONAME-$CLEAN_BRANCH_NAME",
     "type": "npm",
@@ -11,6 +11,7 @@ JSON=$(cat <<-EOF
     "alias": [
         "$CLEAN_BRANCH_NAME-circleci-now.niccai.com"
     ]
-}EOF)
+}
+EOF)`
 
 echo $JSON > .now/now.feature.json
