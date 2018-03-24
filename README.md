@@ -7,3 +7,4 @@ Get Zeit's Now working with CircleCI
 * team yourteam
 * ./.now/now.feature.sh
 * if [ "${CIRCLE_BRANCH}" == "master" ]; then
+* "dotenv": ".env.staging",
