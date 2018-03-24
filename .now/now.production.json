@@ -3,5 +3,5 @@
     "type": "npm",
     "forwardNpm": true,
     "dotenv": ".env.production",
-    "alias": ["example.com"]
+    "alias": ["master-circleci-now.niccai.com"]
 }

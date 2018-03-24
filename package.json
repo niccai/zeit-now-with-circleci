@@ -1,0 +1,26 @@
+{
+    "name": "circleci-with-zeit-now",
+    "version": "1.0.0",
+    "description": "Get Zeit's Now working with CircleCI",
+    "main": "index.js",
+    "scripts": {
+        "test": "ava --verbose"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/niccai/circleci-with-zeit-now.git"
+    },
+    "keywords": ["zeit", "now", "circleci", "deploy", "ci"],
+    "author": "@niccai",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/niccai/circleci-with-zeit-now/issues"
+    },
+    "homepage": "https://github.com/niccai/circleci-with-zeit-now#readme",
+    "dependencies": {
+        "express": "^4.16.3"
+    },
+    "devDependencies": {
+        "ava": "^0.25.0"
+    }
+}

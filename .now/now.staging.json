@@ -3,5 +3,5 @@
     "type": "npm",
     "forwardNpm": true,
     "dotenv": ".env.staging",
-    "alias": ["staging.example.com"]
+    "alias": ["staging-circleci-now.niccai.com"]
 }

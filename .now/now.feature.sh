@@ -10,7 +10,7 @@ JSON=$(cat <<EOF
     "forwardNpm": true,
     "dotenv": ".env.feature",
     "alias": [
-        "$CLEAN_BRANCH_NAME.example.com"
+        "$CLEAN_BRANCH_NAME-circleci-now.niccai.com"
     ]
 }
 EOF)
