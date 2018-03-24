@@ -12,6 +12,7 @@ JSON=$(cat <<-EOF
         "$CLEAN_BRANCH_NAME-circleci-now.niccai.com"
     ]
 }
-EOF)
+EOF
+)
 
 echo $JSON > .now/now.feature.json
